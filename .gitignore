@@ -18,7 +18,7 @@ bin/
 /vendor/
 
 # Go dependency files
-/go.sum
+#/go.sum
 /go.work.sum
 
 # Logs

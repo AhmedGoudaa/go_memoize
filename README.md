@@ -82,7 +82,7 @@ package main
 import (
     "fmt"
     "time"
-    "github.com/yourusername/go_memoize"
+    m "github.com/AhmedGoudaa/go_memoize"
 )
 
 func main() {
@@ -92,7 +92,7 @@ func main() {
         return fmt.Sprintf("%d-%s", a, b)
     }
 
-    memoizedFn := memoize.Memoize2(computeFn, 10*time.Second)
+    memoizedFn := m.Memoize2(computeFn, 10*time.Second)
 
     // First call will compute the result
     result := memoizedFn(5, "example")
