@@ -1,0 +1,64 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Output of the build process
+/build/
+bin/
+
+# Configuration files
+*.env
+
+# Vendor directory
+/vendor/
+
+# Go dependency files
+/go.sum
+/go.work.sum
+
+# Logs
+*.log
+.checksum
+
+# Temporary files
+*.tmp
+*.swp
+
+# Go workspace file
+go.work
+
+# IDE/editor files
+.vscode/
+.idea/
+*.iml
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Test binaries
+*.test
+
+# Coverage files
+coverage.out
+
+# Dependencies in Go modules
+/go/pkg/
+
+# Debug files
+*.prof      # Profiling files (pprof)
+*.trace     # Tracing files
+*.dmp       # Core dump files
+debug/      # Common directory for debug artifacts
+*.key       # SSH or encryption keys
+*.pem       # SSL certificates
+*.crt       # Certificate files
+
+# Delve Debugger
+__debug_bin*
+qodana.yaml
