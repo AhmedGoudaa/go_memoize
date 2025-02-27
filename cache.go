@@ -45,9 +45,10 @@ func (g *cacheGroup) startTicker() {
 	}()
 }
 
-func (g *cacheGroup) stop() {
-	close(g.done)
-}
+//func (g *cacheGroup) stop() {
+//	close(g.done)
+//	g.ticker = nil
+//}
 
 var cacheGroupInstance = newCacheGroup()
 
@@ -86,18 +87,7 @@ func (c *Cache[K, V]) NowUnix() int64 {
 	return c.cacheGroup.now.Load().(int64)
 }
 
-//func (c *Cache[K, V]) GetOrCompute(key K, computeFn func() V) V {
-//	//now := c.NowUnix()
-//
-//	if val, ok := c.Get(key); ok {
-//		return val
-//	}
-//
-//	newVal := computeFn()
-//	c.Set(key, newVal)
-//	return newVal
-//}
-
+// inlined get and set
 func (c *Cache[K, V]) GetOrCompute(key K, computeFn func() V) V {
 	c.mu.RLock()
 	existingEntry, ok := c.Entries[key]

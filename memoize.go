@@ -5,7 +5,7 @@ import (
 )
 
 func Memoize[V any](computeFn func() V, ttl time.Duration) func() V {
-	cache := NewCache[uint64, V](int64(ttl.Seconds()))
+	cache := NewCacheSized[uint64, V](1, int64(ttl.Seconds()))
 	return func() V {
 		return cache.GetOrCompute(0, func() V {
 			return computeFn()
