@@ -1,7 +1,10 @@
 # go_memoize Package
 
-`go_memoize` package provides a set of functions to memoize the results of computations, allowing for efficient caching and retrieval of results based on input parameters. This can significantly improve performance for expensive or frequently called functions.  This package uses the FNV-1a hash algorithm and has zero dependencies.
-This package uses the FNV-1a hash algorithm and has zero dependencies.
+`go_memoize` package provides a set of functions to memoize the results of computations, allowing for efficient caching and retrieval of results based on input parameters. This can significantly improve performance for expensive or frequently called functions.
+
+#### This package uses the FNV-1a hash algorithm and has zero dependencies.
+
+### Note: All Memoize functions take functions with parameters that are only comparable.
 
 ## Installation
 
@@ -67,7 +70,6 @@ memoizedFn := Memoize3(computeFn, 10*time.Second)
 result := memoizedFn(5, "example", 3.14)
 ```
 
-
 ### Cache Management
 
 The `Cache` struct is used internally to manage the cached entries. It supports setting, getting, and deleting entries, as well as computing new values if they are not already cached or have expired.
@@ -104,6 +106,18 @@ func main() {
 }
 ```
 
+## List of Memoize Functions
+
+- `Memoize`: Memoizes a function with no parameters.
+- `Memoize1`: Memoizes a function with 1 parameter.
+- `Memoize2`: Memoizes a function with 2 parameters.
+- `Memoize3`: Memoizes a function with 3 parameters.
+- `Memoize4`: Memoizes a function with 4 parameters.
+- `Memoize5`: Memoizes a function with 5 parameters.
+- `Memoize6`: Memoizes a function with 6 parameters.
+- `Memoize7`: Memoizes a function with 7 parameters.
+
 ## License
 
 This project is licensed under the MIT License. See the `LICENSE` file for details.
+```
