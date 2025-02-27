@@ -110,18 +110,94 @@ func main() {
 }
 ```
 
-[## List of Memoize Functions
-]()
-- `Memoize`: Memoizes a function with no parameters.
-- `Memoize1`: Memoizes a function with 1 parameter.
-- `Memoize2`: Memoizes a function with 2 parameters.
-- `Memoize3`: Memoizes a function with 3 parameters.
-- `Memoize4`: Memoizes a function with 4 parameters.
-- `Memoize5`: Memoizes a function with 5 parameters.
-- `Memoize6`: Memoizes a function with 6 parameters.
-- `Memoize7`: Memoizes a function with 7 parameters.
+## Functions & Usage Examples
 
-## License
+<table>
+  <tr>
+    <th><code>Function</code></th>
+    <th><code>Description</code></th>
+    <th><code>Example</code></th>
+  </tr>
+  <tr>
+    <td><code>Memoize</code></td>
+    <td>Memoizes a function with no params</td>
+    <td>
+      <pre><code>
+memoizedFn := Memoize(func() int { return 1 }, time.Minute)
+result := memoizedFn()
+      </code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td><code>Memoize1</code></td>
+    <td>Memoizes a function with 1 param</td>
+    <td>
+      <pre><code>
+memoizedFn := Memoize1(func(a int) int { return a * 2 }, time.Minute)
+result := memoizedFn(5)
+      </code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td><code>Memoize2</code></td>
+    <td>Memoizes a function with 2 params</td>
+    <td>
+      <pre><code>
+memoizedFn := Memoize2(func(a int, b string) string { return fmt.Sprintf("%d-%s", a, b) }, time.Minute)
+result := memoizedFn(5, "example")
+      </code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td><code>Memoize3</code></td>
+    <td>Memoizes a function with 3 params</td>
+    <td>
+      <pre><code>
+memoizedFn := Memoize3(func(a int, b string, c float64) string { return fmt.Sprintf("%d-%s-%f", a, b, c) }, time.Minute)
+result := memoizedFn(5, "example", 3.14)
+      </code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td><code>Memoize4</code></td>
+    <td>Memoizes a function with 4 params</td>
+    <td>
+      <pre><code>
+memoizedFn := Memoize4(func(a, b, c, d int) int { return a + b + c + d }, time.Minute)
+result := memoizedFn(1, 2, 3, 4)
+      </code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td><code>Memoize5</code></td>
+    <td>Memoizes a function with 5 params</td>
+    <td>
+      <pre><code>
+memoizedFn := Memoize5(func(a, b, c, d, e int) int { return a + b + c + d + e }, time.Minute)
+result := memoizedFn(1, 2, 3, 4, 5)
+      </code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td><code>Memoize6</code></td>
+    <td>Memoizes a function with 6 params</td>
+    <td>
+      <pre><code>
+memoizedFn := Memoize6(func(a, b, c, d, e, f int) int { return a + b + c + d + e + f }, time.Minute)
+result := memoizedFn(1, 2, 3, 4, 5, 6)
+      </code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td><code>Memoize7</code></td>
+    <td>Memoizes a function with 7 params</td>
+    <td>
+      <pre><code>
+memoizedFn := Memoize7(func(a, b, c, d, e, f, g int) int { return a + b + c + d + e + f + g }, time.Minute)
+result := memoizedFn(1, 2, 3, 4, 5, 6, 7)
+      </code></pre>
+    </td>
+  </tr>
+</table>
 
-This project is licensed under the MIT License. See the `LICENSE` file for details.
-```
+This project is licensed under the MIT License. See the [`LICENSE`](https://github.com/AhmedGoudaa/go_memoize/blob/main/LICENSE) file for details.
