@@ -1,2 +1,2 @@
-module github.com/AhmedGoudaa/go-memoize
+module github.com/AhmedGoudaa/go_memoize
 go 1.22
