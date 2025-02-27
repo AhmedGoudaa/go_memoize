@@ -200,4 +200,18 @@ result := memoizedFn(1, 2, 3, 4, 5, 6, 7)
   </tr>
 </table>
 
+
+### [Benchmarking result]((https://github.com/AhmedGoudaa/go_memoize/blob/main/benchmarks/benchmark_test.go))
+ Device "Apple M2 Pro"
+
+```
+goos: darwin
+goarch: arm64
+BenchDo0Mem | 785610645 | 15.27 ns/op | 0 B/op | 0 allocs/op
+BenchDo1Mem | 633380330 | 19.02 ns/op | 0 B/op | 0 allocs/op
+BenchDo2Mem | 553163156 | 21.78 ns/op | 0 B/op | 0 allocs/op
+BenchDo3Mem | 482770053 | 25.11 ns/op | 0 B/op | 0 allocs/op
+BenchDo4Mem | 471314336 | 25.68 ns/op | 0 B/op | 0 allocs/op
+```
+
 This project is licensed under the MIT License. See the [`LICENSE`](https://github.com/AhmedGoudaa/go_memoize/blob/main/LICENSE) file for details.
