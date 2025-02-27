@@ -8,7 +8,7 @@ This package uses the FNV-1a hash algorithm and has zero dependencies.
 To install the package, use `go get`:
 
 ```sh
-go get github.com/yourusername/go_memoize
+go get github.com/AhmedGoudaa/go-memoize
 ```
 
 ## Usage
