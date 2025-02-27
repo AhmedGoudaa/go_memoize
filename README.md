@@ -1,5 +1,7 @@
 # go_memoize Package
 
+![Workflow Status](https://github.com/AhmedGoudaa/go_memoize/actions/workflows/ci.yml/badge.svg)
+
 `go_memoize` package provides a set of functions to memoize the results of computations, allowing for efficient caching and retrieval of results based on input parameters. This can significantly improve performance for expensive or frequently called functions.
 
 #### This package uses the FNV-1a hash algorithm and has zero dependencies.
