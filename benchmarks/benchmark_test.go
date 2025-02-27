@@ -1,7 +1,7 @@
 package benchmarks
 
 import (
-	"github.com/AhmedGoudaa/go_memoize"
+	M "github.com/AhmedGoudaa/go_memoize"
 	"testing"
 	"time"
 )
@@ -24,19 +24,17 @@ func DoSomThing4(a string, b string, c string, s int) string {
 	return a + b + c
 }
 
-var DoSomThingZeroMemoized = go_memoize.Memoize(DoSomThingZero, 10*time.Minute)
-var DoSomThing1Memoized = go_memoize.Memoize1(DoSomThing1, 10*time.Minute)
-var DoSomThing2Memoized = go_memoize.Memoize2(DoSomThing2, 10*time.Minute)
-var DoSomThing3Memoized = go_memoize.Memoize3(DoSomThing3, 10*time.Minute)
-var DoSomThing4Memoized = go_memoize.Memoize4(DoSomThing4, 10*time.Minute)
-
 func BenchmarkDo0Mem(b *testing.B) {
+	DoSomThingZeroMemoized := M.Memoize(DoSomThingZero, 10*time.Minute)
+
 	for i := 0; i < b.N; i++ {
 		DoSomThingZeroMemoized()
 	}
 }
 
 func BenchmarkDo1Mem(b *testing.B) {
+	DoSomThing1Memoized := M.Memoize1(DoSomThing1, 10*time.Minute)
+
 	params := []string{"1111", "2222", "3333", "4444"}
 	for i := 0; i < b.N; i++ {
 		DoSomThing1Memoized(params[i%4])
@@ -44,6 +42,8 @@ func BenchmarkDo1Mem(b *testing.B) {
 }
 
 func BenchmarkDo2Mem(b *testing.B) {
+	DoSomThing2Memoized := M.Memoize2(DoSomThing2, 10*time.Minute)
+
 	params := []struct {
 		a string
 		b string
@@ -59,6 +59,8 @@ func BenchmarkDo2Mem(b *testing.B) {
 }
 
 func BenchmarkDo3Mem(b *testing.B) {
+	DoSomThing3Memoized := M.Memoize3(DoSomThing3, 10*time.Minute)
+
 	params := []struct {
 		a, b, c string
 	}{
@@ -73,6 +75,7 @@ func BenchmarkDo3Mem(b *testing.B) {
 }
 
 func BenchmarkDo4Mem(b *testing.B) {
+	DoSomThing4Memoized := M.Memoize4(DoSomThing4, 10*time.Minute)
 	params := []struct {
 		a, b, c string
 		s       int
