@@ -207,11 +207,12 @@ result := memoizedFn(1, 2, 3, 4, 5, 6, 7)
 ```
 goos: darwin
 goarch: arm64
-BenchDo0Mem | 785610645 | 15.27 ns/op | 0 B/op | 0 allocs/op
-BenchDo1Mem | 633380330 | 19.02 ns/op | 0 B/op | 0 allocs/op
-BenchDo2Mem | 553163156 | 21.78 ns/op | 0 B/op | 0 allocs/op
-BenchDo3Mem | 482770053 | 25.11 ns/op | 0 B/op | 0 allocs/op
-BenchDo4Mem | 471314336 | 25.68 ns/op | 0 B/op | 0 allocs/op
+BenchmarkDo0Mem-10 | 775503418 | 15.18 ns/op | 0 B/op | 0 allocs/op
+BenchmarkDo1Mem-10 | 620250867 | 19.35 ns/op | 0 B/op | 0 allocs/op
+BenchmarkDo2Mem-10 | 554001188 | 21.92 ns/op | 0 B/op | 0 allocs/op
+BenchmarkDo3Mem-10 | 501301826 | 24.42 ns/op | 0 B/op | 0 allocs/op
+BenchmarkDo4Mem-10 | 480851932 | 25.01 ns/op | 0 B/op | 0 allocs/op
+
 ```
 
 This project is licensed under the MIT License. See the [`LICENSE`](https://github.com/AhmedGoudaa/go_memoize/blob/main/LICENSE) file for details.
