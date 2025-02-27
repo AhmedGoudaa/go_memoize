@@ -4,9 +4,11 @@
 
 `go_memoize` package provides a set of functions to memoize the results of computations, allowing for efficient caching and retrieval of results based on input parameters. This can significantly improve performance for expensive or frequently called functions.
 
-#### This package uses the FNV-1a hash algorithm and has zero dependencies.
+## Features
+- Memoizes functions with TTL, supporting 0 to 7 comparable parameters. [List of Memoize Functions](https://github.com/AhmedGoudaa/go_memoize/blob/main/memoize.go)
+- High performance, zero allocation, and zero dependencies.
+- Utilizes the FNV-1a hash algorithm for caching.
 
-### Note: All Memoize functions take functions with parameters that are only comparable.
 
 ## Installation
 
@@ -108,8 +110,8 @@ func main() {
 }
 ```
 
-## List of Memoize Functions
-
+[## List of Memoize Functions
+]()
 - `Memoize`: Memoizes a function with no parameters.
 - `Memoize1`: Memoizes a function with 1 parameter.
 - `Memoize2`: Memoizes a function with 2 parameters.
