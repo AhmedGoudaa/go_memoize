@@ -1,4 +1,4 @@
-# go_memoize Package
+# go_memoize 
 
 ![Workflow Status](https://github.com/AhmedGoudaa/go_memoize/actions/workflows/ci.yml/badge.svg)
 
