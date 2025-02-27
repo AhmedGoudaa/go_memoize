@@ -25,7 +25,7 @@ jobs:
           go-version: stable
 
       - name: Run tests
-        run: go test ./...
+        run: go test -v ./...
 
       - name: Check code formatting
         run: gofmt -l .
