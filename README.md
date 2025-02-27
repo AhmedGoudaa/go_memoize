@@ -215,4 +215,4 @@ BenchmarkDo4Mem-10 | 480851932 | 25.01 ns/op | 0 B/op | 0 allocs/op
 
 ```
 
-This project is licensed under the MIT License. See the [`LICENSE`](https://github.com/AhmedGoudaa/go_memoize/blob/main/LICENSE) file for details.
+This project is licensed under the Apache License. See the [`LICENSE`](https://github.com/AhmedGoudaa/go_memoize/blob/main/LICENSE) file for details.
