@@ -29,34 +29,50 @@ const (
 	falseHash = offset64 ^ 0*prime64
 )
 
+// hash1 hashes a single key using the FNV-1a algorithm.
+// A is a comparable type.
 func hash1[A comparable](key A) uint64 {
 	return hash(offset64, key)
 }
 
+// hash2 hashes two keys using the FNV-1a algorithm.
+// A and B are comparable types.
 func hash2[A, B comparable](key1 A, key2 B) uint64 {
 	return hash(hash(offset64, key1), key2)
 }
 
+// hash3 hashes three keys using the FNV-1a algorithm.
+// A, B, and C are comparable types.
 func hash3[A, B, C comparable](key1 A, key2 B, key3 C) uint64 {
 	return hash(hash(hash(offset64, key1), key2), key3)
 }
 
+// hash4 hashes four keys using the FNV-1a algorithm.
+// A, B, C, and D are comparable types.
 func hash4[A, B, C, D comparable](key1 A, key2 B, key3 C, key4 D) uint64 {
 	return hash(hash(hash(hash(offset64, key1), key2), key3), key4)
 }
 
+// hash5 hashes five keys using the FNV-1a algorithm.
+// A, B, C, D, and E are comparable types.
 func hash5[A, B, C, D, E comparable](key1 A, key2 B, key3 C, key4 D, key5 E) uint64 {
 	return hash(hash(hash(hash(hash(offset64, key1), key2), key3), key4), key5)
 }
 
+// hash6 hashes six keys using the FNV-1a algorithm.
+// A, B, C, D, E, and F are comparable types.
 func hash6[A, B, C, D, E, F comparable](key1 A, key2 B, key3 C, key4 D, key5 E, key6 F) uint64 {
 	return hash(hash(hash(hash(hash(hash(offset64, key1), key2), key3), key4), key5), key6)
 }
 
+// hash7 hashes seven keys using the FNV-1a algorithm.
+// A, B, C, D, E, F, and G are comparable types.
 func hash7[A, B, C, D, E, F, G comparable](key1 A, key2 B, key3 C, key4 D, key5 E, key6 F, key7 G) uint64 {
 	return hash(hash(hash(hash(hash(hash(hash(offset64, key1), key2), key3), key4), key5), key6), key7)
 }
 
+// hash hashes a key using the FNV-1a algorithm.
+// A is a comparable type.
 func hash[A comparable](hash uint64, key A) uint64 {
 	switch v := any(key).(type) {
 	case string:
@@ -94,13 +110,7 @@ func hash[A comparable](hash uint64, key A) uint64 {
 	}
 }
 
-//func hashString(hash uint64, key string) uint64 {
-//	for i := 0; i < len(key); i++ {
-//		hash = (hash ^ uint64(key[i])) * prime64
-//	}
-//	return hash
-//}
-
+// hashString hashes a string key using the FNV-1a algorithm.
 func hashString(hash uint64, key string) uint64 {
 	length := len(key)
 
@@ -118,22 +128,26 @@ func hashString(hash uint64, key string) uint64 {
 	}
 	return hash
 }
+
+// hashInt hashes an integer key using the FNV-1a algorithm.
 func hashInt(hash uint64, key uint64) uint64 {
 	return (hash ^ key) * prime64
 }
 
+// hashUint hashes an unsigned integer key using the FNV-1a algorithm.
 func hashUint(hash uint64, key uint64) uint64 {
 	return (hash ^ key) * prime64
 }
 
+// hashFloat hashes a floating-point key using the FNV-1a algorithm.
 func hashFloat(hash uint64, key uint64) uint64 {
 	return (hash ^ key) * prime64
 }
 
+// hashBool hashes a boolean key using the FNV-1a algorithm.
 func hashBool(key bool) uint64 {
 	if key {
 		return trueHash
 	}
 	return falseHash
-
 }

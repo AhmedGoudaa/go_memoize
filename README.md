@@ -8,6 +8,7 @@
 - Memoizes functions with TTL, supporting 0 to 7 comparable parameters. [List of Memoize Functions](https://github.com/AhmedGoudaa/go_memoize/blob/main/memoize.go)
 - High performance, zero allocation, and zero dependencies.
 - Utilizes the FNV-1a hash algorithm for caching.
+- Thread-safe and concurrent-safe.
 
 
 ## Installation

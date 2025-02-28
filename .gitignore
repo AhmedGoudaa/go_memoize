@@ -62,5 +62,5 @@ debug/      # Common directory for debug artifacts
 # Delve Debugger
 __debug_bin*
 qodana.yaml
-memprofile.out
-profile.out
+cmd
+testing

@@ -6,12 +6,13 @@ import (
 	"time"
 )
 
+// zeroValue returns the zero value for any type T.
 func zeroValue[T any]() T {
 	var zero T
 	return zero
 }
 
-// cacheGroup manages multiple caches with a shared ticker
+// cacheGroup manages multiple caches with a shared ticker.
 type cacheGroup struct {
 	now          atomic.Value
 	ticker       *time.Ticker
@@ -19,7 +20,7 @@ type cacheGroup struct {
 	done         chan struct{}
 }
 
-// NewCacheGroup creates a new cache group with shared ticker
+// newCacheGroup creates a new cache group with a shared ticker.
 func newCacheGroup() *cacheGroup {
 	group := &cacheGroup{
 		done:         make(chan struct{}),
@@ -30,6 +31,7 @@ func newCacheGroup() *cacheGroup {
 	return group
 }
 
+// startTicker starts the ticker for the cache group.
 func (g *cacheGroup) startTicker() {
 	g.ticker = time.NewTicker(g.tickInterval) // Initialize the ticker
 	go func() {
@@ -45,18 +47,16 @@ func (g *cacheGroup) startTicker() {
 	}()
 }
 
-//func (g *cacheGroup) stop() {
-//	close(g.done)
-//	g.ticker = nil
-//}
-
+// var cacheGroupInstance is a singleton instance of cacheGroup.
 var cacheGroupInstance = newCacheGroup()
 
+// entry represents a cache entry with a value and a timestamp.
 type entry[V any] struct {
 	value     V
 	timeStamp int64
 }
 
+// Cache is a generic cache with a time-to-live (TTL) for each entry.
 type Cache[K comparable, V any] struct {
 	Entries    map[K]entry[V]
 	ttl        int64
@@ -65,6 +65,7 @@ type Cache[K comparable, V any] struct {
 	zeroVal    V
 }
 
+// NewCache creates a new cache with the specified TTL.
 func NewCache[K comparable, V any](ttl int64) *Cache[K, V] {
 	return &Cache[K, V]{
 		Entries:    make(map[K]entry[V]),
@@ -74,6 +75,7 @@ func NewCache[K comparable, V any](ttl int64) *Cache[K, V] {
 	}
 }
 
+// NewCacheSized creates a new cache with the specified size and TTL.
 func NewCacheSized[K comparable, V any](size int, ttl int64) *Cache[K, V] {
 	return &Cache[K, V]{
 		Entries:    make(map[K]entry[V], size),
@@ -83,11 +85,12 @@ func NewCacheSized[K comparable, V any](size int, ttl int64) *Cache[K, V] {
 	}
 }
 
+// NowUnix returns the current Unix timestamp from the cache group.
 func (c *Cache[K, V]) NowUnix() int64 {
 	return c.cacheGroup.now.Load().(int64)
 }
 
-// inlined get and set
+// GetOrCompute retrieves the value for the given key or computes it using the provided function if not present or expired.
 func (c *Cache[K, V]) GetOrCompute(key K, computeFn func() V) V {
 	c.mu.RLock()
 	existingEntry, ok := c.Entries[key]
@@ -105,12 +108,14 @@ func (c *Cache[K, V]) GetOrCompute(key K, computeFn func() V) V {
 	return newVal
 }
 
+// Delete removes the entry for the given key from the cache.
 func (c *Cache[K, V]) Delete(key K) {
 	c.mu.Lock()
 	delete(c.Entries, key)
 	c.mu.Unlock()
 }
 
+// Set adds or updates the value for the given key in the cache.
 func (c *Cache[K, V]) Set(key K, value V) {
 	timeStamp := c.NowUnix()
 	c.mu.Lock()
@@ -118,6 +123,7 @@ func (c *Cache[K, V]) Set(key K, value V) {
 	c.mu.Unlock()
 }
 
+// Get retrieves the value for the given key from the cache if present and not expired.
 func (c *Cache[K, V]) Get(key K) (V, bool) {
 	c.mu.RLock()
 	entry, ok := c.Entries[key]
