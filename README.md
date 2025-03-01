@@ -202,17 +202,17 @@ result := memoizedFn(1, 2, 3, 4, 5, 6, 7)
 </table>
 
 
-### [Benchmarking result]((https://github.com/AhmedGoudaa/go_memoize/blob/main/benchmarks/benchmark_test.go))
+### [Benchmarking result]((https://github.com/AhmedGoudaa/go_memoize/blob/bechmarking/benchmarks/README.md)
  Device "Apple M2 Pro"
 
 ```
 goos: darwin
 goarch: arm64
-BenchmarkDo0Mem-10 | 775503418 | 15.18 ns/op | 0 B/op | 0 allocs/op
-BenchmarkDo1Mem-10 | 620250867 | 19.35 ns/op | 0 B/op | 0 allocs/op
-BenchmarkDo2Mem-10 | 554001188 | 21.92 ns/op | 0 B/op | 0 allocs/op
-BenchmarkDo3Mem-10 | 501301826 | 24.42 ns/op | 0 B/op | 0 allocs/op
-BenchmarkDo4Mem-10 | 480851932 | 25.01 ns/op | 0 B/op | 0 allocs/op
+BenchmarkDo0Mem-10 | 811289566 | 14.77 ns/op | 0 B/op | 0 allocs/op
+BenchmarkDo1Mem-10 | 676579908 | 18.26 ns/op | 0 B/op | 0 allocs/op
+BenchmarkDo2Mem-10 | 578134332 | 20.99 ns/op | 0 B/op | 0 allocs/op
+BenchmarkDo3Mem-10 | 533455237 | 22.67 ns/op | 0 B/op | 0 allocs/op
+BenchmarkDo4Mem-10 | 487471639 | 24.73 ns/op | 0 B/op | 0 allocs/op
 
 ```
 
