@@ -202,7 +202,7 @@ result := memoizedFn(1, 2, 3, 4, 5, 6, 7)
 </table>
 
 
-### [Benchmarking result]((https://github.com/AhmedGoudaa/go_memoize/blob/bechmarking/benchmarks/README.md)
+### [For more benchmarking results please check this](https://github.com/AhmedGoudaa/go_memoize/blob/bechmarking/benchmarks/README.md)
  Device "Apple M2 Pro"
 
 ```
