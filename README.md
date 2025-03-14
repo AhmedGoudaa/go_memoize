@@ -10,7 +10,6 @@
 - Utilizes the FNV-1a hash algorithm for caching.
 - Thread-safe and concurrent-safe.
 
-
 ## Installation
 
 To install the package, use `go get`:
@@ -33,6 +32,16 @@ computeFn := func() int {
 
 memoizedFn := Memoize(computeFn, 10*time.Second)
 result := memoizedFn()
+``` 
+The same for functions with Context:
+
+```go
+computeCtxFn := func(ctx context.Context) int {
+    // Expensive computation
+    return 42
+}
+memoizedCtxFn := MemoizeCtx(computeCtxFn, 10*time.Second)
+result := memoizedCtxFn(context.Background())
 ```
 
 ### Memoization with Parameters
@@ -51,6 +60,18 @@ memoizedFn := Memoize1(computeFn, 10*time.Second)
 result := memoizedFn(5)
 ```
 
+The same for functions with Context:
+
+```go
+computeCtxFn := func(ctx context.Context, a int) int {
+    // Expensive computation
+    return a * 2
+}
+
+memoizedCtxFn := MemoizeCtx1(computeCtxFn, 10*time.Second)
+result := memoizedCtxFn(context.Background(), 5)
+```
+
 #### Two Parameters
 
 ```go
@@ -63,6 +84,18 @@ memoizedFn := Memoize2(computeFn, 10*time.Second)
 result := memoizedFn(5, "example")
 ```
 
+The same for functions with Context:
+
+```go
+computeCtxFn := func(ctx context.Context, a int, b string) string {
+    // Expensive computation
+    return fmt.Sprintf("%d-%s", a, b)
+}
+
+memoizedCtxFn := MemoizeCtx2(computeCtxFn, 10*time.Second)
+result := memoizedCtxFn(context.Background(), 5, "example")
+```
+
 #### Three Parameters
 
 ```go
@@ -73,6 +106,18 @@ computeFn := func(a int, b string, c float64) string {
 
 memoizedFn := Memoize3(computeFn, 10*time.Second)
 result := memoizedFn(5, "example", 3.14)
+```
+
+The same for functions with Context:
+
+```go
+computeCtxFn := func(ctx context.Context, a int, b string, c float64) string {
+    // Expensive computation
+    return fmt.Sprintf("%d-%s-%f", a, b, c)
+}
+
+memoizedCtxFn := MemoizeCtx3(computeCtxFn, 10*time.Second)
+result := memoizedCtxFn(context.Background(), 5, "example", 3.14)
 ```
 
 ### Cache Management
@@ -199,11 +244,90 @@ result := memoizedFn(1, 2, 3, 4, 5, 6, 7)
       </code></pre>
     </td>
   </tr>
+  <tr>
+    <td><code>MemoizeCtx</code></td>
+    <td>Memoizes a function with context and no params</td>
+    <td>
+      <pre><code>
+memoizedCtxFn := MemoizeCtx(func(ctx context.Context) int { return 1 }, time.Minute)
+result := memoizedCtxFn(context.Background())
+      </code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td><code>MemoizeCtx1</code></td>
+    <td>Memoizes a function with context and 1 param</td>
+    <td>
+      <pre><code>
+memoizedCtxFn := MemoizeCtx1(func(ctx context.Context, a int) int { return a * 2 }, time.Minute)
+result := memoizedCtxFn(context.Background(), 5)
+      </code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td><code>MemoizeCtx2</code></td>
+    <td>Memoizes a function with context and 2 params</td>
+    <td>
+      <pre><code>
+memoizedCtxFn := MemoizeCtx2(func(ctx context.Context, a int, b string) string { return fmt.Sprintf("%d-%s", a, b) }, time.Minute)
+result := memoizedCtxFn(context.Background(), 5, "example")
+      </code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td><code>MemoizeCtx3</code></td>
+    <td>Memoizes a function with context and 3 params</td>
+    <td>
+      <pre><code>
+memoizedCtxFn := MemoizeCtx3(func(ctx context.Context, a int, b string, c float64) string { return fmt.Sprintf("%d-%s-%f", a, b, c) }, time.Minute)
+result := memoizedCtxFn(context.Background(), 5, "example", 3.14)
+      </code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td><code>MemoizeCtx4</code></td>
+    <td>Memoizes a function with context and 4 params</td>
+    <td>
+      <pre><code>
+memoizedCtxFn := MemoizeCtx4(func(ctx context.Context, a, b, c, d int) int { return a + b + c + d }, time.Minute)
+result := memoizedCtxFn(context.Background(), 1, 2, 3, 4)
+      </code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td><code>MemoizeCtx5</code></td>
+    <td>Memoizes a function with context and 5 params</td>
+    <td>
+      <pre><code>
+memoizedCtxFn := MemoizeCtx5(func(ctx context.Context, a, b, c, d, e int) int { return a + b + c + d + e }, time.Minute)
+result := memoizedCtxFn(context.Background(), 1, 2, 3, 4, 5)
+      </code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td><code>MemoizeCtx6</code></td>
+    <td>Memoizes a function with context and 6 params</td>
+    <td>
+      <pre><code>
+memoizedCtxFn := MemoizeCtx6(func(ctx context.Context, a, b, c, d, e, f int) int { return a + b + c + d + e + f }, time.Minute)
+result := memoizedCtxFn(context.Background(), 1, 2, 3, 4, 5, 6)
+      </code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td><code>MemoizeCtx7</code></td>
+    <td>Memoizes a function with context and 7 params</td>
+    <td>
+      <pre><code>
+memoizedCtxFn := MemoizeCtx7(func(ctx context.Context, a, b, c, d, e, f, g int) int { return a + b + c + d + e + f + g }, time.Minute)
+result := memoizedCtxFn(context.Background(), 1, 2, 3, 4, 5, 6, 7)
+      </code></pre>
+    </td>
+  </tr>
 </table>
 
-
 ### [For more benchmarking results please check this](https://github.com/AhmedGoudaa/go_memoize/blob/bechmarking/benchmarks/README.md)
- Device "Apple M2 Pro"
+Device "Apple M2 Pro"
 
 ```
 goos: darwin

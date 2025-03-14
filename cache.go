@@ -58,7 +58,7 @@ type entry[V any] struct {
 
 // Cache is a generic cache with a time-to-live (TTL) for each entry.
 type Cache[K comparable, V any] struct {
-	Entries    map[K]entry[V]
+	entries    map[K]entry[V]
 	ttl        int64
 	cacheGroup *cacheGroup
 	mu         sync.RWMutex
@@ -68,7 +68,7 @@ type Cache[K comparable, V any] struct {
 // NewCache creates a new cache with the specified TTL.
 func NewCache[K comparable, V any](ttl int64) *Cache[K, V] {
 	return &Cache[K, V]{
-		Entries:    make(map[K]entry[V]),
+		entries:    make(map[K]entry[V]),
 		cacheGroup: cacheGroupInstance,
 		ttl:        ttl,
 		zeroVal:    zeroValue[V](),
@@ -78,7 +78,7 @@ func NewCache[K comparable, V any](ttl int64) *Cache[K, V] {
 // NewCacheSized creates a new cache with the specified size and TTL.
 func NewCacheSized[K comparable, V any](size int, ttl int64) *Cache[K, V] {
 	return &Cache[K, V]{
-		Entries:    make(map[K]entry[V], size),
+		entries:    make(map[K]entry[V], size),
 		cacheGroup: cacheGroupInstance,
 		ttl:        ttl,
 		zeroVal:    zeroValue[V](),
@@ -93,7 +93,7 @@ func (c *Cache[K, V]) NowUnix() int64 {
 // GetOrCompute retrieves the value for the given key or computes it using the provided function if not present or expired.
 func (c *Cache[K, V]) GetOrCompute(key K, computeFn func() V) V {
 	c.mu.RLock()
-	existingEntry, ok := c.Entries[key]
+	existingEntry, ok := c.entries[key]
 	c.mu.RUnlock()
 
 	now := c.NowUnix()
@@ -103,7 +103,7 @@ func (c *Cache[K, V]) GetOrCompute(key K, computeFn func() V) V {
 
 	c.mu.Lock()
 	newVal := computeFn()
-	c.Entries[key] = entry[V]{value: newVal, timeStamp: now}
+	c.entries[key] = entry[V]{value: newVal, timeStamp: now}
 	c.mu.Unlock()
 	return newVal
 }
@@ -111,7 +111,7 @@ func (c *Cache[K, V]) GetOrCompute(key K, computeFn func() V) V {
 // Delete removes the entry for the given key from the cache.
 func (c *Cache[K, V]) Delete(key K) {
 	c.mu.Lock()
-	delete(c.Entries, key)
+	delete(c.entries, key)
 	c.mu.Unlock()
 }
 
@@ -119,14 +119,14 @@ func (c *Cache[K, V]) Delete(key K) {
 func (c *Cache[K, V]) Set(key K, value V) {
 	timeStamp := c.NowUnix()
 	c.mu.Lock()
-	c.Entries[key] = entry[V]{value: value, timeStamp: timeStamp}
+	c.entries[key] = entry[V]{value: value, timeStamp: timeStamp}
 	c.mu.Unlock()
 }
 
 // Get retrieves the value for the given key from the cache if present and not expired.
 func (c *Cache[K, V]) Get(key K) (V, bool) {
 	c.mu.RLock()
-	entry, ok := c.Entries[key]
+	entry, ok := c.entries[key]
 	c.mu.RUnlock()
 
 	if ok && (c.ttl == 0 || c.NowUnix()-entry.timeStamp < c.ttl) {
